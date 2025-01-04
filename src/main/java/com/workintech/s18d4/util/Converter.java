@@ -5,6 +5,7 @@ import com.workintech.s18d4.dto.AddressResponse;
 import com.workintech.s18d4.dto.CustomerResponse;
 import com.workintech.s18d4.entity.Account;
 import com.workintech.s18d4.entity.Address;
+import com.workintech.s18d4.entity.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,5 +42,15 @@ public class Converter {
                 account.getMoneyAmount(),
                 new CustomerResponse(account.getCustomer().getId(),account.getCustomer().getEmail(),account.getCustomer().getSalary()),
                 new AddressResponse(account.getCustomer().getAddress().getId(), account.getCustomer().getAddress().getCity(), account.getCustomer().getAddress().getCountry()));
+    }
+    public static List<CustomerResponse> convertCustomerResponse(List<Customer> customers) {
+        List<CustomerResponse> customerResponses = new ArrayList<>();
+        for(Customer customer: customers) {
+            customerResponses.add(new CustomerResponse(customer.getId(),customer.getEmail(), customer.getSalary()));
+        }
+        return customerResponses;
+    }
+    public static CustomerResponse convertCustomerResponse(Customer customer) {
+        return new CustomerResponse(customer.getId(), customer.getEmail(), customer.getSalary());
     }
 }
