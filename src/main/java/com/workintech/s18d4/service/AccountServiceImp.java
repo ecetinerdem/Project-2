@@ -38,6 +38,8 @@ public class AccountServiceImp implements  AccountService{
 
     @Override
     public Account delete(Long id) {
-        return null;
+        Account foundAccount = findById(id);
+        accountRepository.delete(foundAccount);
+        return foundAccount;
     }
 }

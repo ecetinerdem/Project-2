@@ -20,4 +20,11 @@ public class GlobalExceptionHandler {
         AccountErrorResponse accountErrorResponse = new AccountErrorResponse(accountException.getHttpStatus().value(),accountException.getMessage(), LocalDateTime.now());
         return new ResponseEntity<>(accountErrorResponse, accountException.getHttpStatus());
     }
+
+    @ExceptionHandler
+    public ResponseEntity<AddressErrorResponse> handleException(AddressException addressException) {
+        log.error("An Account error has occurred ", addressException);
+        AddressErrorResponse addressErrorResponse = new AddressErrorResponse(addressException.getHttpStatus().value(),addressException.getMessage(), LocalDateTime.now());
+        return new ResponseEntity<>(addressErrorResponse, addressException.getHttpStatus());
+    }
 }
