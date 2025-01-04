@@ -5,6 +5,7 @@ import com.workintech.s18d4.entity.Customer;
 import com.workintech.s18d4.service.CustomerService;
 import com.workintech.s18d4.util.Converter;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public CustomerResponse save(@RequestBody Customer customer) {
+    public CustomerResponse save(@Validated @RequestBody Customer customer) {
         return Converter.convertCustomerResponse(customerService.save(customer));
     }
 
