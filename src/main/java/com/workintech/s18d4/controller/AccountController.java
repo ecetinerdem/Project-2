@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class AccountController {
     }
 
     @PutMapping("/{customerId}")
-    public AccountResponse update (@PathVariable("customerId") Long customerId, @RequestBody Account account ) {
+    public AccountResponse update (@PathVariable("customerId") Long customerId,@Validated @RequestBody Account account ) {
         Customer customer = customerService.findById(customerId);
         Account toBeUpdatedAccount = null;
         for(Account account1: customer.getAccounts()) {
