@@ -37,7 +37,7 @@ public class AccountController {
     }
 
     @PostMapping("/{customerId}")
-    public AccountResponse save(@PathVariable("customerId") Long customerId, @RequestBody Account account) {
+    public AccountResponse save(@PathVariable("customerId") Long customerId,@Validated @RequestBody Account account) {
         Customer customer = customerService.findById(customerId);
         if(customer != null) {
             customer.getAccounts().add(account);
