@@ -1,9 +1,11 @@
 package com.workintech.s18d4.service;
 
 import com.workintech.s18d4.entity.Customer;
+import com.workintech.s18d4.exceptions.CustomerException;
 import com.workintech.s18d4.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +24,12 @@ public class CustomerServiceImp implements CustomerService{
 
     @Override
     public List<Customer> findAll() {
-        return List.of();
+        return customerRepository.findAll();
     }
 
     @Override
     public Customer findById(Long id) {
-        return null;
+        return customerRepository.findById(id).orElseThrow(() -> new CustomerException("Costumer does not exist with id " + id, HttpStatus.NOT_FOUND));
     }
 
     @Override
